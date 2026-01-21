@@ -1,7 +1,9 @@
 ARG PYTHON_VERSION=3.12
-ARG RADICALE_VERSION=3.6.0
 
 FROM python:${PYTHON_VERSION}-slim AS builder
+
+ARG RADICALE_VERSION=3.6.0
+
 RUN python -m pip install --upgrade pip wheel
 RUN python -m pip wheel --no-deps --wheel-dir=/wheels radicale==${RADICALE_VERSION}
 
