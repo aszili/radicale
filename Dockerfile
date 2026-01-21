@@ -13,7 +13,6 @@ RUN python -m venv ${VENV} \
 FROM gcr.io/distroless/python3-debian12
 
 ENV VENV=/venv
-ENV PATH="${VENV}/bin:${PATH}"
 
 COPY --from=builder ${VENV} ${VENV}
 
@@ -23,5 +22,5 @@ EXPOSE 5232
 
 USER 1000:1000
 
-ENTRYPOINT ["python", "-m", "radicale"]
+ENTRYPOINT ["/venv/bin/python", "-m", "radicale"]
 CMD ["--config", "/config/config"]
