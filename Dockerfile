@@ -9,7 +9,7 @@ RUN python -m venv ${VENV} \
     && ${VENV}/bin/pip install --no-cache-dir \
         radicale==${RADICALE_VERSION}
 
-FROM gcr.io/distroless/python${PYTHON_VERSION}-debian12
+FROM gcr.io/distroless/python3-debian12
 
 ENV VENV=/venv
 ENV PATH="${VENV}/bin:${PATH}"
