@@ -1,12 +1,13 @@
-FROM gcr.io/distroless/python3-debian12
-
 ARG PYTHON_VERSION=3.12
 ARG RADICALE_VERSION=3.6.0
 
-COPY --from=python:${PYTHON_VERSION}-slim /usr/local/lib/python${PYTHON_VERSION%.*} /usr/local/lib/python${PYTHON_VERSION%.*}
-COPY --from=python:${PYTHON_VERSION}-slim /usr/local/bin/pip /usr/local/bin/pip
+FROM python:${PYTHON_VERSION}-slim AS builder
+RUN python -m pip install --upgrade pip wheel
+RUN python -m pip wheel --no-deps --wheel-dir=/wheels radicale==${RADICALE_VERSION}
 
-RUN python -m pip install --no-cache-dir radicale==${RADICALE_VERSION}
+FROM gcr.io/distroless/python3-debian12
+COPY --from=builder /wheels /wheels
+RUN python -m pip install --no-cache-dir /wheels/*
 
 WORKDIR /data
 VOLUME /config /data
