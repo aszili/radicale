@@ -22,6 +22,7 @@ jobs:
     uses: aszili/github-actions/.github/workflows/prepare-package-version.yml@main
     with:
       package_name: radicale
+      package_manager: requirements.txt
       output_env_var: RADICALE_VERSION
 
   build:
