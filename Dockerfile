@@ -1,5 +1,5 @@
 ARG PYTHON_VERSION=3.12
-ARG RADICALE_VERSION=3.6.0
+ARG RADICALE_VERSION
 
 FROM python:${PYTHON_VERSION}-slim AS builder
 RUN python -m pip install --upgrade pip wheel

@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "dependencies": {
+    "radicale": "github:Kozea/Radicale#v3.6.0"
+  }
+}
