@@ -1,11 +1,10 @@
 ARG PYTHON_VERSION=3.12
-ARG RADICALE_VERSION
 
 FROM python:${PYTHON_VERSION}-slim AS builder
 
-
 RUN python -m pip install --upgrade pip wheel
-RUN python -m pip install --no-cache-dir --target=/app radicale==${RADICALE_VERSION}
+COPY requirements.txt .
+RUN python -m pip install --no-cache-dir --target=/app -r requirements.txt
 
 FROM gcr.io/distroless/python3-debian12
 COPY --from=builder /app /app

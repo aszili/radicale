@@ -21,7 +21,7 @@ updates:
           - "version-update:semver-minor"
           - "version-update:semver-patch"
 
-  - package-ecosystem: npm
+  - package-ecosystem: pip
     directory: /
     schedule:
       interval: daily
