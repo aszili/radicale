@@ -24,6 +24,7 @@ on:
 jobs:
   initialize:
     uses: aszili/github-actions/.github/workflows/prepare-package-version.yml@main
+    secrets: inherit
     with:
       package_name: radicale
       package_manager: requirements.txt
@@ -32,6 +33,7 @@ jobs:
   build:
     needs: initialize
     uses: aszili/github-actions/.github/workflows/build-docker-image.yml@main
+    secrets: inherit
     with:
       target_tag: ${{ needs.initialize.outputs.version }}
       build_args: RADICALE_VERSION=${{ needs.initialize.outputs.version }}
