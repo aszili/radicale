@@ -3,6 +3,7 @@ name: Docker Build & Push
 permissions:
   contents: read
   packages: write
+  security-events: write
 
 on:
   push:
