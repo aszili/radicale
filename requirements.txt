@@ -1,1 +1,1 @@
-radicale==3.7.3
+radicale==3.7.4
